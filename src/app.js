@@ -6,26 +6,15 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Navigation from './components/Navigation';
-import HomePage from './pages/HomePage';
-import BlogPage from './pages/BlogPage';
-import PostPage from './pages/PostPage';
-import LoginPage from './pages/LoginPage';
+import CatalogPage from './pages/CatalogPage';
 
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <Navigation />
         <Switch>
           <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/blog/:index">
-            <PostPage />
-          </Route>
-          <Route path="/blog">
-            <BlogPage />
+            <CatalogPage />
           </Route>
         </Switch>
       </Router>
