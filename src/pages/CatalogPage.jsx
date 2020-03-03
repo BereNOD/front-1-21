@@ -1,44 +1,23 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import Product from './../components/Product/index.jsx';
-
-const mockedData = [
-  {
-    id: 0,
-    image: 'image/product.png',
-    rate: 3,
-    in_stocke: true,
-    title: "Сухой корм Hill's Science Plan Adult Large Breed Lamb & Rice для взрослых собак",
-    weights: [
-      {
-        id: 0,
-        value: 300,
-        units: 'гр',
-      },
-      {
-        id: 1,
-        value: 1,
-        units: 'кг',
-      },
-      {
-        id: 2,
-        value: 2,
-        units: 'кг',
-      },
-      {
-        id: 3,
-        value: 5,
-        units: 'кг',
-      }
-    ],
-    price: 500,
-    sale: 450,
-    priceUnit: 'RUB'
-  }
-];
+import mockedData from './CatalogMock.js';
 
 class CatalogPage extends Component {
   state = {
-    productList: mockedData
+    productList: []
+  };
+
+  componentDidMount = () => {
+    // setTimeout(() => {
+    //   this.setState({
+    //     productList: mockedData
+    //   });
+    // }, 5000);
+    fetch('//')
+      .then(productList => {
+        this.setState({ productList });
+      })
   };
 
   render = () => {
@@ -55,9 +34,9 @@ class CatalogPage extends Component {
                   <div className="contacts">
                       <div className="contacts-numder">
                           <img src="image/phone-icon.png" alt="phone" />
-                          <span className="number">
+                          <a href="tel:+74872717171" className="number">
                               +7 (4872) 71-71-71
-                          </span>
+                          </a>
                       </div>
                       <div className="contacts-address">
                           <img src="image/location-icon.png" alt="location" />
@@ -149,7 +128,7 @@ class CatalogPage extends Component {
 
       <div className="container">
           <div className="row product">
-              {productList.map(product => (
+              {_.map(productList, product => (
                 <Product
                   key={`Product-${product.id}`}
                   data={product}
@@ -166,7 +145,7 @@ class CatalogPage extends Component {
                       </div>
                       <div className="footer__link">
                           <img src="image/phone-icon-footer.png" alt="phone-footer" />
-                          <a href="#"> +7 (4872) 71-71-71</a>
+                          <a href="tel:+74872717171">+7 (4872) 71-71-71</a>
                       </div>
                       <div className="footer__link">
                           <img src="image/location-icon-footer.png" alt="location-footer" />
